@@ -3,7 +3,25 @@ import os
 from discord.ext import commands
  
 client = commands.Bot(command_prefix = '$')
- 
+
+def isprime(num):
+	if type(num) != type(1):
+		try:
+			num = int(num)
+		except ValueError:
+			return "Incorrect input"
+	if num > 1:
+	   for i in range(2,num):
+	       if (num % i) == 0:
+	           return num,"is not a prime number"
+	           return i,"times",num//i,"is",num
+	           break
+	   else:
+	       return num,"is a prime number"
+	       
+	else:
+	    return num,"is not a prime number"
+
 @client.event
 async def on_ready():
     print("XtremeBot is ready.")
@@ -24,7 +42,7 @@ async def on_message(message):
         await message.channel.send("Pong! " + str(client.latency()) + "ms") # Doesn't work'
  
     if message.content.startswith("$test"):
-        await message.channel.send(str(str(message.content) + " ")[6:-1])
+        await message.channel.send(isprime(str(str(message.content) + " ")[6:-1]))
  
     if message.content.startswith("$info"):
         await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)")
