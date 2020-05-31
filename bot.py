@@ -14,7 +14,7 @@ def isprime(num):
 	   for i in range(2,num):
 	       if (num % i) == 0:
 	           return str(num) + " is not a prime number"
-	           return str(i) + " times " str(num//i) + " is " + str(num)
+	           return str(i) + " times " +  str(num//i) + " is " + str(num)
 	           break
 	   else:
 	       return str(num) + " is a prime number"
