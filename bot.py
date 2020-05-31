@@ -14,18 +14,13 @@ async def ping(ctx):
 
 @client.event
 async def on_message(message):
-    if message.content.find("$$ping") != -1:
-        await message.channel.send("Pong! " + str(client.latency()) + "ms")
-
-@client.event
-async def on_message(message):
-    if message.content.find("$hello") != -1:
-        await message.channel.send("Hi") # If the user says !hello we will send back hi
-
-@client.event
-async def on_message(message):
     if message.content.find("$b") != -1:
         await message.channel.send("🅱️🐝")
-
+    if message.content.find("$ping") != -1:
+        await message.channel.send("Pong! " + str(client.latency()) + "ms")
+    if message.content.startswith("$test"):
+        await message.channel.send("test true")
+    if not message.content.startswith("$test"):
+        await message.channel.send("test false")
 
 client.run(os.getenv('Token'))
