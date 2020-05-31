@@ -13,14 +13,14 @@ def isprime(num):
 	if num > 1:
 	   for i in range(2,num):
 	       if (num % i) == 0:
-	           return num,"is not a prime number"
-	           return i,"times",num//i,"is",num
+	           return str(num) + " is not a prime number"
+	           return str(i) + " times " str(num//i) + " is " + str(num)
 	           break
 	   else:
-	       return num,"is a prime number"
+	       return str(num) + " is a prime number"
 	       
 	else:
-	    return num,"is not a prime number"
+	    return str(num) + " is not a prime number"
 
 @client.event
 async def on_ready():
