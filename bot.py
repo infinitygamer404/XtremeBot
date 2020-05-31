@@ -11,7 +11,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.find("$ping") != -1:
-        await message.channel.send('Pong! ' + client.latency() + "ms")
+        await message.channel.send('Pong! ' + str(client.latency()) + "ms")
 
 @client.event
 async def on_message(message):
