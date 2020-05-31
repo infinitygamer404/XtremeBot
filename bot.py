@@ -6,11 +6,12 @@ client = commands.Bot(command_prefix = '$')
 
 @client.event
 async def on_ready():
-	print("XtremeBot is ready.")
+    print("XtremeBot is ready.")
 
-@client.command()
-async def ping(ctx):
-	await ctx.send('Pong! ' + client.latency() + "ms")
+@client.event
+async def on_message(message):
+    if message.content.find("$ping") != -1:
+        await message.channel.send('Pong! ' + client.latency() + "ms")
 
 @client.event
 async def on_message(message):
