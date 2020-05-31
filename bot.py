@@ -27,6 +27,6 @@ async def on_message(message):
         await message.channel.send("test true")
 
     if message.content.startswith("$info"):
-        await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969")
+        await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)")
 
 client.run(os.getenv('Token'))
