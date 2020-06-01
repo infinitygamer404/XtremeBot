@@ -76,4 +76,6 @@ async def on_message(message):
         await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
         await message.channel.send(str(discord.version_info) + "\n" + str(discord.__version__))
 
+    await client.process_commands(message)
+
 client.run(os.getenv('Token'))
