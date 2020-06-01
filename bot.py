@@ -26,22 +26,15 @@ def isprime(num):
 @client.event
 async def on_ready():
     print("XtremeBot is ready.")
- 
+
+
 #@client.command()
-#async def ping(ctx):
-    #await ctx.send('Pong!')
+#async def pinga(ctx):
+    #await ctx.send('Pong! {}'.format(round(client.latency, 1)))
 
 @client.command()
-async def pinga(ctx):
-    await ctx.send('Pong! {}'.format(round(client.latency, 1)))
-
-@client.command()
-async def pingb(ctx):
-    await ctx.send(f'My ping is {client.latency}!')
-
-@client.command()
-async def pingc(ctx):
-    await ctx.send(f'My ping is {bot.latency}!')
+async def ping(ctx):
+    await ctx.send(f'Pong! ` {round(client.latency * 1000)} ')
 
 @client.event
 async def on_message(message):
@@ -50,9 +43,6 @@ async def on_message(message):
 
     if message.content.find(prefix+"b") != -1:
         await message.channel.send("🅱️🐝")
-
-    #if message.content.find(prefix+"ping") != -1:
-        #await message.channel.send("Pong! " + str(round(client.latency())) + "ms") # Doesn't work'
 
     if message.content.startswith(prefix+"prime"):
         try:
@@ -70,7 +60,7 @@ async def on_message(message):
         await message.channel.send(str(str(message.content)+" ")[4:-1])
 
     if message.content.startswith(prefix+"help"):
-        await message.channel.send("Commands list:\n`b` : Just B.\n`prime` : Check if a number is prime or not.\n`eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`say` : Says whatever you say after the command.\n`info` : Information about the bot.")
+        await message.channel.send("Commands list:\n`b` : Just B.\n`prime` : Check if a number is prime or not.\n`eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`say` : Says whatever you say after the command.\n`ping` : Pong!\n`info` : Information about the bot.")
 
     if message.content.startswith(prefix+"info"):
         await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
