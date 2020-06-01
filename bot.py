@@ -30,11 +30,11 @@ async def on_ready():
 
 #@client.command()
 #async def pinga(ctx):
-    #await ctx.send('Pong! {}'.format(round(client.latency, 1)))
+    #await ctx.send('Pong! {}'.format(round(client.latency, 2)))
 
 @client.command()
 async def ping(ctx):
-    await ctx.send(f'Pong! ` {round(client.latency * 1000)} ')
+    await ctx.send(f'Pong! ` {round(client.latency * 100, 3)} `ms ')
 
 @client.event
 async def on_message(message):
