@@ -1,40 +1,19 @@
 import discord
 import os
+import mf
 from discord.ext import commands
 
 prefix = "$"
 
 client = commands.Bot(command_prefix = prefix)
 
-def isprime(num):
-    if type(num) != type(1):
-        try:
-            num = int(num)
-        except ValueError:
-            return "Invalid input value."
-    if num > 1:
-        for i in range(2,num):
-            if (num % i) == 0:
-                return str(num) + " is not a prime number" + "\n" + str(i) + " times " +  str(num//i) + " is " + str(num)
-
-        else:
-            return str(num) + " is a prime number"
-
-    else:
-        return str(num) + " is not a prime number"
-
 @client.event
 async def on_ready():
     print("XtremeBot is ready.")
 
-
-#@client.command()
-#async def pinga(ctx):
-    #await ctx.send('Pong! {}'.format(round(client.latency, 2)))
-
 @client.command()
 async def ping(ctx):
-    await ctx.send(f'Pong! ` {round(client.latency * 100, 3)} `ms ')
+    await ctx.send(f'Pong! ` {round(client.latency * 1000, 3)} `ms ')
 
 @client.event
 async def on_message(message):
@@ -45,10 +24,10 @@ async def on_message(message):
         await message.channel.send("🅱️🐝")
 
     if message.content.startswith(prefix+"prime"):
-        try:
-            await message.channel.send(isprime(str(str(message.content) + " ")[6:-1]))
-        except IndexError:
-            return
+        await message.channel.send(mf.isprime(str(str(message.content) + " ")[6:-1]))
+
+if message.content.startswith(prefix+"fib"):
+        await message.channel.send(mf.isprime(str(str(message.content) + " ")[4:-1]))
 
     if message.content.startswith(prefix+"eval"):
         try:
