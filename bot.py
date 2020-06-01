@@ -31,6 +31,10 @@ async def on_ready():
 #@client.command()
 #async def ping(ctx):
     #await ctx.send('Pong!')
+
+@client.command()
+async def ping(ctx):
+    await ctx.send('Pong! {0}'.format(round(bot.latency, 1)))
  
 @client.event
 async def on_message(message):
@@ -40,8 +44,8 @@ async def on_message(message):
     if message.content.find(prefix+"b") != -1:
         await message.channel.send("🅱️🐝")
 
-    if message.content.find(prefix+"ping") != -1:
-        await message.channel.send("Pong! " + str(client.latency()) + "ms") # Doesn't work'
+    #if message.content.find(prefix+"ping") != -1:
+        #await message.channel.send("Pong! " + str(round(client.latency())) + "ms") # Doesn't work'
 
     if message.content.startswith(prefix+"prime"):
         try:
@@ -50,12 +54,12 @@ async def on_message(message):
             return
     if message.content.startswith(prefix+"eval"):
         try:
-            await message.channel.send(eval(str(message.content)))
+            await message.channel.send(eval(str(str(message.content)+" ")[5:-1]))
         except:
             await message.channel.send("Invalid input")
 
     if message.content.startswith(prefix+"help"):
-        await message.channel.send("Commands list:\n`b`\n`prime`\n`eval`\n`info`")
+        await message.channel.send("Commands list:\n`b` : Just B.\n`prime` : Check if a number is prime or not.\n`eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`info` : Information about the bot.")
 
     if message.content.startswith(prefix+"info"):
         await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)")
