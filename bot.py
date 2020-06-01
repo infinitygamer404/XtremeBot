@@ -43,7 +43,7 @@ async def on_message(message):
 
     if message.content.startswith("$test"):
         try:
-    		await message.channel.send(isprime(str(str(message.content) + " ")[6:-1]))
+            await message.channel.send(isprime(str(str(message.content) + " ")[6:-1]))
         except IndexError:
             return
 
