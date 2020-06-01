@@ -11,13 +11,12 @@ def isprime(num):
         try:
             num = int(num)
         except ValueError:
-            return "Invalid input value"
+            return "Invalid input value."
     if num > 1:
         for i in range(2,num):
             if (num % i) == 0:
-                return str(num) + " is not a prime number"
-                return str(i) + " times " +  str(num//i) + " is " + str(num)
-                break
+                return str(num) + " is not a prime number" + "\n" + str(i) + " times " +  str(num//i) + " is " + str(num)
+
         else:
             return str(num) + " is a prime number"
 
@@ -34,7 +33,7 @@ async def on_ready():
 
 @client.command()
 async def ping(ctx):
-    await ctx.send('Pong! {0}'.format(round(bot.latency, 1)))
+    await ctx.send('Pong! {0}'.format(round(client.latency, 1)))
  
 @client.event
 async def on_message(message):
