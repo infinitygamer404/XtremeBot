@@ -33,7 +33,7 @@ async def on_ready():
 
 @client.command()
 async def pinga(ctx):
-    await ctx.send('Pong! {0}'.format(round(client.latency, 1)))
+    await ctx.send('Pong! {}'.format(round(client.latency, 1)))
 
 @client.command()
 async def pingb(ctx):
@@ -66,10 +66,14 @@ async def on_message(message):
         except:
             await message.channel.send("Invalid input")
 
+    if message.content.startswith(prefix+"say"):
+        await message.channel.send(str(str(message.content)+" ")[4:-1])
+
     if message.content.startswith(prefix+"help"):
-        await message.channel.send("Commands list:\n`b` : Just B.\n`prime` : Check if a number is prime or not.\n`eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`info` : Information about the bot.")
+        await message.channel.send("Commands list:\n`b` : Just B.\n`prime` : Check if a number is prime or not.\n`eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`say` : Says whatever you say after the command.\n`info` : Information about the bot.")
 
     if message.content.startswith(prefix+"info"):
-        await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)")
+        await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
+        await message.channel.send(str(discord.version_info) + "\n" + str(discord.__version__))
 
 client.run(os.getenv('Token'))
