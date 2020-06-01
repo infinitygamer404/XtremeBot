@@ -32,9 +32,17 @@ async def on_ready():
     #await ctx.send('Pong!')
 
 @client.command()
-async def ping(ctx):
+async def pinga(ctx):
     await ctx.send('Pong! {0}'.format(round(client.latency, 1)))
- 
+
+@client.command()
+async def pingb(ctx):
+    await ctx.send(f'My ping is {client.latency}!')
+
+@client.command()
+async def pingc(ctx):
+    await ctx.send(f'My ping is {bot.latency}!')
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -51,6 +59,7 @@ async def on_message(message):
             await message.channel.send(isprime(str(str(message.content) + " ")[6:-1]))
         except IndexError:
             return
+
     if message.content.startswith(prefix+"eval"):
         try:
             await message.channel.send(eval(str(str(message.content)+" ")[5:-1]))
