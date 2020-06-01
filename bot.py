@@ -26,8 +26,8 @@ async def on_message(message):
     if message.content.startswith(prefix+"prime"):
         await message.channel.send(mf.isprime(str(str(message.content) + " ")[6:-1]))
 
-if message.content.startswith(prefix+"fib"):
-        await message.channel.send(mf.fib(str(str(message.content) + " ")[4:-1]))
+    if message.content.startswith(prefix+"fib"):
+        await message.channel.send(str(mf.fib(str(str(message.content) + " ")[4:-1])))
 
     if message.content.startswith(prefix+"eval"):
         try:
