@@ -3,7 +3,7 @@ import os
 import mf
 from discord.ext import commands
 
-prefix = "$"
+prefix = "./"
 
 client = commands.Bot(command_prefix = prefix)
 
