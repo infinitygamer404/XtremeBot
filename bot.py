@@ -24,19 +24,19 @@ async def on_message(message):
         await message.channel.send("🅱️🐝")
 
     if message.content.startswith(prefix+"prime"):
-        await message.channel.send(mf.isprime(str(str(message.content) + " ")[6:-1]))
+        await message.channel.send(mf.isprime(str(str(message.content) + " ")[len(prefix)+len("prime"):-1]))
 
     if message.content.startswith(prefix+"fib"):
-        await message.channel.send(str(mf.fib(str(str(message.content) + " ")[4:-1])))
+        await message.channel.send(str(mf.fib(str(str(message.content) + " ")[len(prefix)+len("fib"):-1])))
 
     if message.content.startswith(prefix+"eval"):
         try:
-            await message.channel.send(eval(str(str(message.content)+" ")[5:-1]))
+            await message.channel.send(eval(str(str(message.content)+" ")[len(prefix)+len("eval"):-1]))
         except:
             await message.channel.send("Invalid input")
 
     if message.content.startswith(prefix+"say"):
-        await message.channel.send(str(str(message.content)+" ")[4:-1])
+        await message.channel.send(str(str(message.content)+" ")[len(prefix)+len("say"):-1])
 
     if message.content.startswith(prefix+"help"):
         await message.channel.send("Commands list:\n`b` : Just B.\n`prime` : Check if a number is prime or not.\n`eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`say` : Says whatever you say after the command.\n`ping` : Pong!\n`info` : Information about the bot.")
