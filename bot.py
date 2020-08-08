@@ -16,6 +16,11 @@ async def ping(ctx):
     await ctx.send(f'Pong! ` {round(client.latency * 1000, 3)} `ms ')
 
 @client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Didn't find a command with that name, type `./help` for a list of commands. \u274c")
+
+@client.event
 async def on_message(message):
     if message.author == client.user:
         return
