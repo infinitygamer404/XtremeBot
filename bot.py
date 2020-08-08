@@ -56,8 +56,8 @@ async def _eval(ctx, *, stmt):
 # Info
 @client.command()
 async def info(ctx):
-    await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
-    await message.channel.send(str(discord.version_info) + "\n" + str(discord.__version__))
+    await ctx.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
+    await ctx.send(str(discord.version_info) + "\n" + str(discord.__version__))
 
 ##@client.command(aliases=["help"])
 ##async def _help(ctx):
