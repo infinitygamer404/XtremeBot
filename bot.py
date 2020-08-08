@@ -3,48 +3,56 @@ import os
 import mf
 from discord.ext import commands
 
-prefix = "./"
+PREFIX = "./"
 
-client = commands.Bot(command_prefix = prefix)
+client = commands.Bot(command_prefix = PREFIX)
 
 @client.event
 async def on_ready():
     print("XtremeBot is ready.")
-
-@client.command()
-async def ping(ctx):
-    await ctx.send(f'Pong! ` {round(client.latency * 1000, 3)} `ms ')
+    await mf.log()
 
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send("Didn't find a command with that name, type `./help` for a list of commands. \u274c")
 
+@client.command()
+async def ping(ctx):
+    await ctx.send(f'Pong! ` {round(client.latency * 1000)} `ms')
+
+@client.command()
+async def b(ctx):
+    await ctx.send("🅱️🐝")
+
+@client.command(aliases=["isprime"])
+async def prime(ctx, num):
+    await ctx.send(str(mf.isprime(num)))
+
+@client.command()
+async def fib(ctx, num):
+    await ctx.send(str(mf.fib(num)))
+
+@client.command()
+async def say(ctx, *, msg):
+    await ctx.message.delete()
+    await ctx.send(msg)
+
+@client.command(aliases=["eval"])
+async def _eval(ctx, *, stmt):
+    try:
+        await ctx.send(str(eval(stmt)))
+    except:
+        await ctx.send("Invalid input")
+
+@client.command(aliases=["help"])
+async def _help(ctx):
+    await ctx.send(f"The bot prefix is `{PREFIX}`\nCommands list:\n`{prefix}b` : Just B.\n`{prefix}prime` : Check if a number is prime or not.\n`{prefix}eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`{prefix}say` : Says whatever you say after the command.\n`{prefix}ping` : Pong!\n`{prefix}info` : Information about the bot.")
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
-
-    if message.content.find(prefix+"b") != -1:
-        await message.channel.send("🅱️🐝")
-
-    if message.content.startswith(prefix+"prime"):
-        await message.channel.send(mf.isprime(str(str(message.content) + " ")[len(prefix)+len("prime"):-1]))
-
-    if message.content.startswith(prefix+"fib"):
-        await message.channel.send(str(mf.fib(str(str(message.content) + " ")[len(prefix)+len("fib"):-1])))
-
-    if message.content.startswith(prefix+"eval"):
-        try:
-            await message.channel.send(eval(str(str(message.content)+" ")[len(prefix)+len("eval"):-1]))
-        except:
-            await message.channel.send("Invalid input")
-
-    if message.content.startswith(prefix+"say"):
-        await message.channel.send(str(str(message.content)+" ")[len(prefix)+len("say"):-1])
-
-    if message.content.startswith(prefix+"help"):
-        await message.channel.send("Commands list:\n`b` : Just B.\n`prime` : Check if a number is prime or not.\n`eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`say` : Says whatever you say after the command.\n`ping` : Pong!\n`info` : Information about the bot.")
 
     if message.content.startswith(prefix+"info"):
         await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
