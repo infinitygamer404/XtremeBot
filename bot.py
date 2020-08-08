@@ -53,6 +53,11 @@ async def _eval(ctx, *, stmt):
     except:
         await ctx.send("Invalid input")
 
+# Repo
+@client.command()
+async def repo(ctx):
+    await ctx.send("The GitHub repository for this bot is: https://github.com/infinitygamer404/XtremeBot")
+
 # Info
 @client.command()
 async def info(ctx):
@@ -70,4 +75,4 @@ async def on_message(message):
 
     await client.process_commands(message)
 
-client.run(os.getenv('Token'))
+client.run('NzE2MjAyMDgzMDYxMzM0MDI2.XtIVKg.643MKk0X-6P5fiv6vS_NObh3kTE')
