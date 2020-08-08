@@ -75,4 +75,4 @@ async def on_message(message):
 
     await client.process_commands(message)
 
-client.run(os.getenv('Token')
+client.run(os.getenv('Token'))
