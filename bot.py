@@ -53,6 +53,12 @@ async def _eval(ctx, *, stmt):
     except:
         await ctx.send("Invalid input")
 
+# Info
+@client.command()
+async def info(ctx):
+    await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
+    await message.channel.send(str(discord.version_info) + "\n" + str(discord.__version__))
+
 ##@client.command(aliases=["help"])
 ##async def _help(ctx):
 ##    await ctx.send(f"The bot prefix is `{PREFIX}`\nCommands list:\n`{prefix}b` : Just B.\n`{prefix}prime` : Check if a number is prime or not.\n`{prefix}eval` : Evaluate your [mathematical] statement. This accepts Python syntax.\n`{prefix}say` : Says whatever you say after the command.\n`{prefix}ping` : Pong!\n`{prefix}info` : Information about the bot.")
@@ -61,10 +67,6 @@ async def _eval(ctx, *, stmt):
 async def on_message(message):
     if message.author == client.user:
         return
-
-    if message.content.startswith(prefix+"info"):
-        await message.channel.send("I am XtremeBot. A discord bot made by @TheXtremeCrafter#7969. (Intentional no ping)\nDiscord.py version info:")
-        await message.channel.send(str(discord.version_info) + "\n" + str(discord.__version__))
 
     await client.process_commands(message)
 
